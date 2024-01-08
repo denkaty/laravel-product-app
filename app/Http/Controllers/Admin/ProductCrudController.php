@@ -29,6 +29,7 @@ class ProductCrudController extends CrudController
         CRUD::setModel(\App\Models\Product::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/product');
         CRUD::setEntityNameStrings('product', 'products');
+        $this->crud->addFields($this->getFieldsData());
     }
 
     /**
@@ -39,7 +40,10 @@ class ProductCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::setFromDb(); // set columns from db columns.
+        $this->crud->set('show.setFromDb', false);
+        $this->crud->addColumns($this->getFieldsData(TRUE));
+
+        /*CRUD::setFromDb(); // set columns from db columns.*/
 
         /**
          * Columns can be defined using the fluent syntax:
@@ -56,6 +60,15 @@ class ProductCrudController extends CrudController
     protected function setupCreateOperation()
     {
         CRUD::setValidation(ProductRequest::class);
+        CRUD::addField([
+            'name' => 'category_id',
+            'label' => 'Category',
+            'type' => 'select',
+            'entity' => 'category',
+            'attribute' => 'name',
+            'model' => 'App\Models\Category',
+        ]);
+
         CRUD::setFromDb(); // set fields from db columns.
 
         /**
@@ -73,5 +86,35 @@ class ProductCrudController extends CrudController
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
+    }
+    private function getFieldsData($show = FALSE)
+    {
+        return [
+            [
+                'name' => 'name',
+                'label' => 'Name',
+                'type' => 'text'
+            ],
+            [
+                'name' => 'category_id',
+                'label' => 'Category',
+                'type' => 'select',
+                'entity' => 'category',
+                'attribute' => 'name',
+                'model' => 'App\Models\Category',
+            ],
+            [
+                'name' => 'description',
+                'label' => 'Description',
+                'type' => 'text'
+            ],
+            [
+                'label' => "Product Image",
+                'name' => "image",
+                'type' => ($show ? 'view' : 'upload'),
+                'view' => 'partials/image',
+                'upload' => true,
+            ]
+        ];
     }
 }
