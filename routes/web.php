@@ -21,6 +21,7 @@ Route::get('/', function () {
 Route::get('/Home', function () {
     return view('index');
 });
+
 Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
 Route::get('/categories/search', [CategoryController::class, 'search'])->name('categories.search');
 
