@@ -29,7 +29,12 @@ class Category extends Model
     | FUNCTIONS
     |--------------------------------------------------------------------------
     */
+    public function scopeSearch($query, $search)
+    {
+        return $query->where('name', 'LIKE', "%{$search}%");
 
+        // Add other fields you want to search against
+    }
     /*
     |--------------------------------------------------------------------------
     | RELATIONS
