@@ -20,8 +20,8 @@ class Category extends Model
     protected $table = 'categories';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
-    protected $guarded = ['id'];
-    // protected $fillable = [];
+    // protected $guarded = ['id'];
+    protected $fillable = ['name'];
     // protected $hidden = [];
 
     /*
@@ -35,7 +35,10 @@ class Category extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-
+    public function products()
+    {
+        return $this->hasMany(Product::class, 'category_id');
+    }
     /*
     |--------------------------------------------------------------------------
     | SCOPES
