@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +16,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
+Route::get('/Home', function () {
+    return view('index');
+});
+Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
+Route::get('/categories/search', [CategoryController::class, 'search'])->name('categories.search');
+
+Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+Route::get('/products/search', [ProductController::class, 'search'])->name('products.search');
