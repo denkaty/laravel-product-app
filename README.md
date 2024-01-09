@@ -12,6 +12,7 @@ Brief overview of the project.
 6. [Views Structure](#views-structure)
 7. [Migrations](#migrations)
 8. [Factories](#factories)
+9. [Database Seeding](#database-seeding)
 
 ## Tables Structure
 ### Users
@@ -108,5 +109,12 @@ The `CategoryFactory` generates default instances for the Category model. It inc
 ### Product Factory
 
 The `ProductFactory` creates default instances for the Product model. It generates data for attributes like name, category, description, and image.
+
+## Database Seeding
+
+To activate the seeders and populate the database, use the following artisan command:
+
+```bash
+php artisan db:seed
 
 
