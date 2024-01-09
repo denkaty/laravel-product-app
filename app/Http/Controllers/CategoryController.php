@@ -15,12 +15,16 @@ class CategoryController extends Controller
 
     public function search(Request $request)
     {
-        $search = $request->input('search');
-        if (empty($search)) {
+        $searchTerm = htmlspecialchars($request->input('search'));
+        if (empty($searchTerm)) {
             return redirect()->route('categories.index');
         }
-        $categories = Category::search($search)->get();
+        if (preg_match('/^[%_]+$/', $searchTerm)) {
+            return redirect()->route('categories.index');
+        }
 
-        return view('categories.search', ['categories' => $categories]);
+        $categories = Category::search($searchTerm)->get();
+
+        return view('categories.search', compact('categories'));
     }
 }
