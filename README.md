@@ -13,6 +13,7 @@ Brief overview of the project.
 7. [Migrations](#migrations)
 8. [Factories](#factories)
 9. [Database Seeding](#database-seeding)
+10. [Sorting Products and Categories by Name](#sorting-products-and-categories-by-name)
 
 ## Tables Structure
 ### Users
@@ -116,5 +117,19 @@ To activate the seeders and populate the database, use the following artisan com
 
 ```bash
 php artisan db:seed
+```
 
+## Sorting Products and Categories by Name
+
+The sorting functionality allows users to organize the data alphabetically based on names.
+
+#### Products Index Page
+- Implemented sorting by product names.
+- Added a clickable header for the "Product Name" column that triggers the sorting action.
+- Utilized Bootstrap and FontAwesome icons for visual indicators.
+
+#### Categories Index Page
+- Similar implementation for sorting by category names.
+
+Click on the "Product Name" or "Category Name" header to sort the entries alphabetically.
 
