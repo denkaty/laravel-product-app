@@ -15,12 +15,16 @@ class ProductController extends Controller
 
     public function search(Request $request)
     {
-        $search = $request->input('search');
-        if (empty($search)) {
+        $searchTerm = htmlspecialchars($request->input('search'));
+        if (empty($searchTerm)) {
             return redirect()->route('products.index');
         }
-        $products = Product::search($search)->get();
+        if (preg_match('/^[%_]+$/', $searchTerm)) {
+            return redirect()->route('products.index');
+        }
 
-        return view('products.search', ['products' => $products]);
+        $products = Product::search($searchTerm)->get();
+
+        return view('products.search', compact('products'));
     }
 }
