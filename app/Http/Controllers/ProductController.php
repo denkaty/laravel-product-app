@@ -16,7 +16,6 @@ class ProductController extends Controller
             return view('products.sort_by_name', compact('products'));
         }
 
-        // Default order or other sorting logic if needed
         $products = Product::orderBy('created_at', 'desc')->get();
 
         return view('products.index', compact('products'));
