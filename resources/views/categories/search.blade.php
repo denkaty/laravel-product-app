@@ -8,11 +8,8 @@
                 <input type="text" class="form-control" name="search" placeholder="Search by category name...">
                 <div class="input-group-append">
                     <button class="btn btn-outline-primary" type="submit">
-                        <i class="fas fa-search"></i> Search
+                        <i class="fas fa-search"></i>
                     </button>
-                    <a href="{{ route('categories.index') }}" class="btn btn-outline-danger">
-                        <i class="fas fa-times-circle"></i> Clear
-                    </a>
                 </div>
             </div>
         </form>
@@ -22,7 +19,11 @@
     <h2 class="text-center mb-4">Search Results</h2>
 
     @if($categories->count() > 0)
-    <p class="text-center mb-3">Showing {{ $categories->count() }} result(s) for: "{{ request()->input('search') }}"</p>
+    <p class="text-center mb-3">Showing {{ $categories->count() }} result(s) for: "{{ request()->input('search') }}"
+        <a href="{{ route('categories.index') }}" class="btn btn-outline-danger" style="margin-left: 3px;">
+            <i class="fas fa-times-circle"></i>
+        </a>
+    </p>
     <table class="table table-striped table-bordered mx-auto mt-4 mb-4" style="width: auto;">
         <thead class="thead-light">
             <tr>
@@ -35,7 +36,7 @@
             @foreach($categories as $category)
             <tr>
                 <th scope="row" class="text-center align-middle">{{ $count }}</th>
-                <td class="text-center align-middle">{{ $category->name }}</td>
+                <td class="text-sm-left align-middle">{{ $category->name }}</td>
             </tr>
             @php $count++; @endphp
             @endforeach

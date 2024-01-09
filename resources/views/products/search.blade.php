@@ -8,11 +8,8 @@
                 <input type="text" class="form-control" name="search" placeholder="Search by product name or category...">
                 <div class="input-group-append">
                     <button class="btn btn-outline-primary" type="submit">
-                        <i class="fas fa-search"></i> Search
+                        <i class="fas fa-search"></i>
                     </button>
-                    <a href="{{ route('products.index') }}" class="btn btn-outline-danger">
-                        <i class="fas fa-times-circle"></i> Clear
-                    </a>
                 </div>
             </div>
         </form>
@@ -22,7 +19,11 @@
     <h2 class="text-center mb-4">Search Results</h2>
 
     @if($products->count() > 0)
-    <p class="text-center mb-3">Showing {{ $products->count() }} result(s) for: "{{ request()->input('search') }}"</p>
+    <p class="text-center mb-3">Showing {{ $products->count() }} result(s) for: "{{ request()->input('search') }}"
+        <a href="{{ route('products.index') }}" class="btn btn-outline-danger" style="margin-left: 3px;">
+            <i class="fas fa-times-circle"></i>
+        </a>
+    </p>
     <table class="table table-striped table-bordered mx-auto mt-4 mb-4" style="width: auto;">
         <thead class="thead-light">
             <tr>
@@ -40,7 +41,7 @@
                 <th scope="row" class="text-center align-middle">{{ $count }}</th>
                 <td class="text-center align-middle">{{ $product->name }}</td>
                 <td class="text-center align-middle">{{ $product->category->name }}</td>
-                <td class="text-center align-middle">{{ strip_tags($product->description) }}</td>
+                <td class="text-sm-left align-middle"><span title="{{ $product->description }}">{{ \Illuminate\Support\Str::limit(strip_tags($product->description), 50, $end='...') }}</span></td>
                 <td class="text-center align-middle" style="height: 120px;">
                     @if($product->image)
                     <img src="{{ asset($product->image) }}" class="img-fluid" width="120" alt="product image">

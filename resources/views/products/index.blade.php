@@ -7,8 +7,8 @@
             <div class="input-group" style="box-shadow: 1px 1px 1px 0px #adb5bd;">
                 <input type="text" class="form-control" name="search" placeholder="Search by product name or category...">
                 <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="submit">
-                        <i class="fas fa-search">Submit</i>
+                    <button class="btn btn-outline-primary" type="submit">
+                        <i class="fas fa-search"></i>
                     </button>
                 </div>
             </div>
@@ -21,7 +21,11 @@
         <thead class="thead-light">
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Product Name</th>
+                <th scope="col">
+                    <a href="{{ route('products.index', ['sort' => 'name']) }}" style="text-decoration: none; color:black;">
+                        Product Name <i class="fa-sharp fa-solid fa-sort"></i>
+                    </a>
+                </th>
                 <th scope="col">Category</th>
                 <th scope="col">Description</th>
                 <th scope="col">Image</th>
@@ -30,14 +34,14 @@
         </thead>
         <tbody>
             @php
-            $count = $products->count();
+            $count = 1;
             @endphp
             @foreach($products as $product)
             <tr>
                 <th scope="row" class="text-center align-middle">{{$count}}</th>
                 <td class="text-center align-middle">{{$product->name}}</td>
                 <td class="text-center align-middle">{{$product->category->name}}</td>
-                <td class="text-center align-middle">{{strip_tags($product->description)}}</td>
+                <td class="text-sm-left align-middle"><span title="{{ $product->description }}">{{ \Illuminate\Support\Str::limit(strip_tags($product->description), 50, $end='...') }}</span></td>
                 <td class="text-center align-middle" style="height: 120px;">
                     @if($product->image)
                     <img src="{{ asset($product->image) }}" class="img-fluid" width="120" alt="product image">
@@ -47,7 +51,7 @@
                 </td>
             </tr>
             @php
-            $count--;
+            $count++;
             @endphp
             @endforeach
         </tbody>
