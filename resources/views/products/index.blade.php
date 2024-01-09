@@ -37,7 +37,7 @@
                 <th scope="row" class="text-center align-middle">{{$count}}</th>
                 <td class="text-center align-middle">{{$product->name}}</td>
                 <td class="text-center align-middle">{{$product->category->name}}</td>
-                <td class="text-center align-middle">{{$product->description}}</td>
+                <td class="text-center align-middle">{{strip_tags($product->description)}}</td>
                 <td class="text-center align-middle" style="height: 120px;">
                     @if($product->image)
                     <img src="{{ asset($product->image) }}" class="img-fluid" width="120" alt="product image">
