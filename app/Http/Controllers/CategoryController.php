@@ -7,8 +7,15 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $sort = $request->input('sort');
+
+        if ($sort === 'name') {
+            $categories = Category::orderBy('name')->get();
+            return view('categories.sort_by_name', compact('categories'));
+        }
+
         $categories = Category::all();
         return view('categories.index', compact('categories'));
     }
