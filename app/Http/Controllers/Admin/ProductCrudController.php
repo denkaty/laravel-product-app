@@ -106,7 +106,8 @@ class ProductCrudController extends CrudController
             [
                 'name' => 'description',
                 'label' => 'Description',
-                'type' => 'text'
+                'type' => ($show ? "view" : 'summernote'),
+                'view' => 'partials/product_description'
             ],
             [
                 'label' => "Product Image",
