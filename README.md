@@ -11,6 +11,7 @@ Brief overview of the project.
 5. [Routes](#routes)
 6. [Views Structure](#views-structure)
 7. [Migrations](#migrations)
+8. [Factories](#factories)
 
 ## Tables Structure
 ### Users
@@ -97,3 +98,15 @@ Information based on the default Laravel Backpack user CRUD.
 - `2023_12_20_202454_create_categories_table`: Creates the initial categories table.
 - `2024_01_07_230716_add_columns_to_categories_table`: Adds columns to the categories table: name.
 - `2024_01_07_231629_add_columns_to_products_table`: Adds columns to the products table: name, category_id, description, image.
+
+## Factories
+
+### Category Factory
+
+The `CategoryFactory` generates default instances for the Category model. It includes a randomly generated word for the name attribute.
+
+### Product Factory
+
+The `ProductFactory` creates default instances for the Product model. It generates data for attributes like name, category, description, and image.
+
+
