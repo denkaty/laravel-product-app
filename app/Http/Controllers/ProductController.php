@@ -7,9 +7,18 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $sort = $request->input('sort');
+
+        if ($sort === 'name') {
+            $products = Product::orderBy('name')->get();
+            return view('products.sort_by_name', compact('products'));
+        }
+
+        // Default order or other sorting logic if needed
         $products = Product::orderBy('created_at', 'desc')->get();
+
         return view('products.index', compact('products'));
     }
 
