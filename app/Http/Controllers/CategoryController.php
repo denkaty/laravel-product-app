@@ -9,29 +9,25 @@ class CategoryController extends Controller
 {
     public function index(Request $request)
     {
-        $sort = $request->input('sort');
+        $sort = htmlspecialchars($request->input('sort'));
+        $searchTerm = htmlspecialchars($request->input('search'));
+
+        $categories = [];
 
         if ($sort === 'name') {
             $categories = Category::orderBy('name')->get();
-            return view('categories.sort_by_name', compact('categories'));
+            return view('categories.index', compact('categories'));
         }
 
-        $categories = Category::all();
-        return view('categories.index', compact('categories'));
-    }
-
-    public function search(Request $request)
-    {
-        $searchTerm = htmlspecialchars($request->input('search'));
         if (empty($searchTerm)) {
-            return redirect()->route('categories.index');
-        }
-        if (preg_match('/^[%_]+$/', $searchTerm)) {
-            return redirect()->route('categories.index');
+            $categories = Category::orderBy('created_at', 'desc')->get();
+            return view('categories.index', compact('categories'));
         }
 
-        $categories = Category::search($searchTerm)->get();
+        if (!preg_match('/^[%_]+$/', $searchTerm)) {
+            $categories = Category::search($searchTerm)->get();
+        }
 
-        return view('categories.search', compact('categories'));
+        return view('categories.index', compact('categories'));
     }
 }
