@@ -31,7 +31,7 @@ class Category extends Model
     */
     public function scopeSearch($query, $search)
     {
-        return $query->where('name', 'LIKE', "%{$search}%");
+        $query->where('name', 'like', '%' . $search . '%');
 
         // Add other fields you want to search against
     }
