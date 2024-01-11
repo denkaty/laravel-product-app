@@ -3,7 +3,7 @@
 @section('content')
 <div class="row justify-content-center mt-4 mb-4">
     <div class="col-md-6">
-        <form action="{{ route('categories.search') }}" method="GET" class="form-inline">
+        <form action="{{ route('categories.index') }}" method="GET" class="form-inline">
             <div class="input-group" style="box-shadow: 1px 1px 1px 0px #adb5bd;">
                 <input type="text" class="form-control" name="search" placeholder="Search by category name...">
                 <div class="input-group-append">
@@ -16,7 +16,7 @@
     </div>
 </div>
 <div class="categories-container container-fluid">
-    <h2 class="text-center mb-4">Recently Created Categories</h2>
+    <h2 class="text-center mb-4">Categories</h2>
     <table class="table table-striped table-bordered mx-auto mt-4 mb-4" style="width: auto;">
         <thead class="thead-light">
             <tr>
