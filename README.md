@@ -13,7 +13,8 @@ Brief overview of the project.
 7. [Migrations](#migrations)
 8. [Factories](#factories)
 9. [Database Seeding](#database-seeding)
-10. [Sorting Products and Categories by Name](#sorting-products-and-categories-by-name)
+10. [Search Functionality](#search-functionality)
+11. [Sorting Products and Categories by Name](#sorting-products-and-categories-by-name)
 
 ## Tables Structure
 ### Users
@@ -69,16 +70,13 @@ Information based on the default Laravel Backpack user CRUD.
 ## Routes
 ### Categories
 - `/categories`: Category index page.
-- `/categories/search`: Search categories.
 
 ### Products
 - `/products`: Product index page.
-- `/products/search`: Search products.
 
 ## Views Structure
 ### Categories
 - Index
-- Search
 
 ### Layouts
 - Nav
@@ -90,7 +88,6 @@ Information based on the default Laravel Backpack user CRUD.
 
 ### Products
 - Index
-- Search
 
 ### Index
 - Home page.
@@ -119,6 +116,15 @@ To activate the seeders and populate the database, use the following artisan com
 php artisan db:seed
 ```
 
+## Search Functionality
+### Categories
+- Search for categories by category name.
+
+### Products
+- Search for products by product name and category.
+
+**Note:** If a user types only '%' or '_', the application will return an empty result to prevent displaying the entire table data.
+  
 ## Sorting Products and Categories by Name
 
 The sorting functionality allows users to organize the data alphabetically based on names.
