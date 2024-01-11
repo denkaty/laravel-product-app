@@ -64,11 +64,16 @@ class Product extends Model
 
     public function scopeSearch($query, $search)
     {
+        return $query->where('name', 'like', '%' . $search . '%')
+            ->orWhereHas('category', function ($query) use ($search) {
+                $query->where('name', 'like', '%' . $search . '%');
+            });
+        /*
         return $query->where('name', 'LIKE', "%{$search}%")
             ->orWhereHas('category', function ($query) use ($search) {
                 $query->where('name', 'LIKE', "%{$search}%");
             });
-
+        */
         // Add other fields you want to search against
     }
     /*
