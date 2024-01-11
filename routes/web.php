@@ -23,7 +23,5 @@ Route::get('/Home', function () {
 });
 
 Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
-Route::get('/categories/search', [CategoryController::class, 'search'])->name('categories.search');
 
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
-Route::get('/products/search', [ProductController::class, 'search'])->name('products.search');
